@@ -1,0 +1,21 @@
+1、发布求助
+Context Publish
+  Pre User.status=Logined
+
+
+2、有偿报酬支付报酬
+Context Publish::pay()
+  Pre User.balance>=reward
+  Pos User.balance-=reward
+      System.tempraryStorage(reward)	
+
+
+3、系统计算信誉积分
+Context Reputation::countReputation()
+  Pre help Others || seek help and pay for reward
+  Pos System.countReputation()
+
+
+4、评价对方
+Context Evaluate
+  inv: Evaluate.validTime<=7
